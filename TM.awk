@@ -65,20 +65,11 @@ END {
 					exit
 				}
 
-				if (position < 1) {
-					if (control[i, 5] == "") {
-						tape = NULL_CHARACTER tape
-					} else {
-						tape = control[i, 5] tape
-					}
-
+				if ((position < 1) && (control[i, 5] != "")) {
+					tape = control[i, 5] tape
 					offset += 1
-				} else if (position > length(tape)) {
-					if (control[i, 5] == "") {
-						tape = tape NULL_CHARACTER
-					} else {
-						tape = tape control[i, 5]
-					}
+				} else if ((position > length(tape)) && (control[i, 5] != "")) {
+					tape = tape control[i, 5]
 				} else if (control[i, 5] != "") {
 					tape = substr(tape, 1, position - 1) control[i, 5] substr(tape, position + 1)
 				}
